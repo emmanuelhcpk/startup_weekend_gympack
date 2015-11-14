@@ -4,11 +4,12 @@ var User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 
 exports.create =  function(req, res,next) {//metodo para crear un usuario
+  console.log(req.body);
   var username = req.body.username ;
   var password = req.body.password ;
 
   if (username != '' && password != '') {//si los parametros son difernetes de vacios
-
+    console.log('123123');
     User.findOne({username: username}, function (err, user) {//se verifica que el usuario no exista!
       if(!user) {
         var usuario = new User({username: username, password: password});
@@ -29,8 +30,8 @@ exports.create =  function(req, res,next) {//metodo para crear un usuario
 
 exports.login = function(req, res,next) {//metodo para el login de usuarios
   //login quemado por efectos de pruebas
-  var username = req.body.username || 'emmanuel';
-  var password = req.body.password || '123456';
+  var username = req.body.username || '';
+  var password = req.body.password || '';
   console.log(req.body);
 
   if (username == '' || password == '') {

@@ -7,19 +7,23 @@ var homeController = require('../controllers/home');
 var UsersController = require('../controllers/userController');
 var jwt = require('express-jwt');
 
-router.use('/login',function(req, res, next) {
+
+var middl = function(req, res, next) {
   console.log('logger');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
-});
+}
+
+router.use('/login',middl);
+router.use('/signup',middl);
 
 
 
 
 router.get('/home',homeController.home);
 router.post('/login', UsersController.login);
-router.get('/signup', UsersController.create);
+router.post('/signup', UsersController.create);
 router.get('/logout',UsersController.logout);
 
 
