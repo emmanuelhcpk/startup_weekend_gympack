@@ -1,13 +1,14 @@
-var express = require('express'),
-  router = express.Router(),
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   Article = mongoose.model('Article');
 
-module.exports = function (app) {
-  app.use('/', router);
+exports.home = function (req,res,next) {
+  res.send('hola');
 };
 
-router.get('/', function (req, res, next) {
+//router.get('/home', function (req,res,next) {
+//  res.send('hola');
+//});
+/*exports.home = function (req, res, next) {
   Article.find(function (err, articles) {
     if (err) return next(err);
     res.render('index', {
@@ -15,4 +16,4 @@ router.get('/', function (req, res, next) {
       articles: articles
     });
   });
-});
+};*/
