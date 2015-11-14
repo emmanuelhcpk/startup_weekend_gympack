@@ -1,12 +1,14 @@
 var Schema = mongoose.Schema;
-
+var bcrypt = require('bcrypt');
 // User schema
+SALT_WORK_FACTOR = 10;
+
 var User = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true}
 });
 
-// Bcrypt middleware on UserSchema
+// antes de guardar UserSchema
 User.pre('save', function(next) {
   var user = this;
 
@@ -24,9 +26,6 @@ User.pre('save', function(next) {
 });
 
 //Password verification
-User.methods.hola = function () {
-  return 'hola';
-}
 User.methods.comparePassword = function(password, cb) {
   bcrypt.compare(password, this.password, function(err, isMatch) {
     if (err) return cb(err);

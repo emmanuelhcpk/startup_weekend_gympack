@@ -1,6 +1,6 @@
 var express = require('express');
 var glob = require('glob');
-
+//var cors = require('cors');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -34,10 +34,12 @@ module.exports = function(app, config) {
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
 
+
  /* var controllers = glob.sync(config.root + '/app/controllers/!*.js');
   controllers.forEach(function (controller) {
     require(controller)(app);
   });*/
+
   app.use('/',routes);
 
   app.use(function (req, res, next) {
