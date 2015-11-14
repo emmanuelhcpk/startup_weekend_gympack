@@ -4,7 +4,9 @@ var express = require('express'),
   config = require('./config/config'),
   glob = require('glob')
   mongoose = require('mongoose');
-
+var  five = require('johnny-five');
+var io = require('socket.io');
+var EventEmitter = require('events');
 
 mongoose.connect(config.db);
 var db = mongoose.connection;
